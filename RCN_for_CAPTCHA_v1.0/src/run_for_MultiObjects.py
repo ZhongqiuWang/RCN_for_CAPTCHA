@@ -22,24 +22,7 @@ default_parameter = {
 }
 
 
-def clear_tmp(tmp_path):
-    """
-    删除tmp下所有文件
-    """
-    def _remove_all(path):
-        for i in os.listdir(path):
-            path_file = os.path.join(path, i)
-            if os.path.isfile(path_file):
-                os.remove(path_file)
-    _remove_all(tmp_path)
-    folder_list = ['learning', 'sliding_windows', 'candidates', 'target_data', 'td_msg']
-    for folder in folder_list:
-        sub_folder = os.path.join(tmp_path, folder)
-        _remove_all(sub_folder)
-
-
 if __name__ == '__main__':
-    clear_tmp('../tmp')
     print('主程序开始')
     start = time.perf_counter()
 

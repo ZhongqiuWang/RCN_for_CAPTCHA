@@ -8,7 +8,7 @@
 
 模型的详细原理请参考原论文。
 
-本项目代码使用Python 3.6，程序入口为src/run_for_MultiObjects.py
+本项目代码使用`Python 3.6`，程序入口为`src/run_for_MultiObjects.py`
 
 参考资料：
 - 参考文献地址：[A generative vision model that trains with high data efficiency and breaks text-based CAPTCHAs](https://science.sciencemag.org/content/358/6368/eaag2612.long)
