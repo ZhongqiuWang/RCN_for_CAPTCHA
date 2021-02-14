@@ -1,6 +1,6 @@
 import numpy as np
 from functools import partial
-from src.scene_scoring_function import scene_scoring
+from scene_scoring_function import scene_scoring
 
 
 class MultiObjectsParsing(object):

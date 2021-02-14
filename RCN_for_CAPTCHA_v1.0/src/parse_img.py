@@ -4,11 +4,11 @@ import numpy as np
 from multiprocessing import Pool
 from functools import partial
 
-from src.crop_img import sliding_windows_cropping
-from src.inference import test_image, fwd_pass_detect, bwd_pass_backtrace
-from src.choose_candidates import choose_candidates, non_max_suppression_without_bwd
-from src.find_msg import find_whole_bu_msg, find_whole_td_msg
-from src.multiple_objects_parsing import MultiObjectsParsing
+from crop_img import sliding_windows_cropping
+from inference import test_image, fwd_pass_detect, bwd_pass_backtrace
+from choose_candidates import choose_candidates, non_max_suppression_without_bwd
+from find_msg import find_whole_bu_msg, find_whole_td_msg
+from multiple_objects_parsing import MultiObjectsParsing
 
 
 class ParseSingleCaptcha(object):
@@ -41,7 +41,7 @@ def parse_single_captcha(test_img, all_model_factors, pool_shape, is_show_tmp, m
     :return:
     """
     # 滑动窗口剪裁图片
-    cropped_imgs = sliding_windows_cropping(test_img)
+    cropped_imgs = sliding_windows_cropping(test_img, is_show_tmp)
     # 剪裁结果, 一个list, 其中每个元素为一个三元tuple, tuple中第0个元素为剪裁出来的图片, 二维np.ndarray
     #                                                     第1、2个元素表示该窗口对应原图的第几行、第几列
 
@@ -116,7 +116,7 @@ def parse_single_captcha(test_img, all_model_factors, pool_shape, is_show_tmp, m
         show_candidates(cropped_imgs, candidates)
 
     # 临时将candidates保存到本地, 这样编写后面代码时不用再每次等好久好久好久
-    data_dir = 'tmp/tmp_test_results_full'
+    data_dir = '../tmp/tmp_test_results_full'
     save_test_results_to_local(candidates, data_dir)
     # 读入保存的各窗口测试结果进行下面的操作
     candidates = load_test_results_from_local(data_dir)
@@ -126,7 +126,7 @@ def parse_single_captcha(test_img, all_model_factors, pool_shape, is_show_tmp, m
     # 场景解译
     all_bu_msg = find_whole_bu_msg(test_img)
     # all_bu_msg: 完整的自底向上消息, 格式: 16x200x1000的np.ndarray, 每个位置上的值为0或1
-    all_td_msg = find_whole_td_msg(candidates)
+    all_td_msg = find_whole_td_msg(candidates, is_show_tmp)
     # all_td_msg: 完整的自顶向下消息, 格式: 20x16x200x1000的np.ndarray, 每个位置上的值为0或1
     parsing_result = MultiObjectsParsing(all_bu_msg, all_td_msg, candidates)
     # 解译结果
@@ -217,7 +217,7 @@ def idx2category(idx):
 
 
 def show_candidates(cropped_imgs, candidates):
-    candidates_dir = 'tmp/candidates'
+    candidates_dir = '../tmp/candidates'
     for i, candidate in enumerate(candidates):
         img_name = str(i)+'_'+idx2category(candidate[0])+'_'+str(candidate[1])+'.bmp'
         img_path = candidates_dir + '/' + img_name
@@ -261,7 +261,7 @@ def show_whole_bu_msg(whole_bu_msg):
                 final[r, c] = int(255*buc/max_val)
     # cv.imshow('B', final)
     # cv.waitKey(0)
-    img_path = 'tmp/test_bu_msg.bmp'
+    img_path = '../tmp/test_bu_msg.bmp'
     cv.imwrite(img_path, final)
     return final
 
@@ -294,6 +294,6 @@ def show_parsing_res(all_td_msg, v):
                 final[r, c] = int(255*buc/max_val)
     # cv.imshow('T', final)
     # cv.waitKey(0)
-    img_path = 'tmp/parsing_res.bmp'
+    img_path = '../tmp/parsing_res.bmp'
     cv.imwrite(img_path, final)
     return final

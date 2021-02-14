@@ -1,11 +1,11 @@
 from multiprocessing import Pool
 from functools import partial
 
-from src.get_training_data_for_MultiObject import get_training_data_iters
-from src.learning import train_image
-import src.save_model as save_model
-from src.get_test_data import get_captcha_data_iters
-from src.parse_img import ParseSingleCaptcha, parse_single_captcha
+from get_training_data_for_MultiObject import get_training_data_iters
+from learning import train_image
+import save_model as save_model
+from get_test_data import get_captcha_data_iters
+from parse_img import ParseSingleCaptcha, parse_single_captcha
 
 
 def run_train_experiment(train_data_dir, train_size, perturb_factor, parallel, seed, target_data_dir,
@@ -62,7 +62,7 @@ def run_parse(test_data_dir, test_size, pool_shape, seed, target_data_dir, model
         test_results.append(tmp)
         print(str(cnt)+'/'+str(test_size), ' parse_right:', parse_right_num, ' candidates_right:', candidates_right_num)
 
-    txt_dir = 'tmp/parsing_results.txt'
+    txt_dir = '../tmp/parsing_results.txt'
     list2txt(true_labels, test_results, txt_dir)
     print('parsing_accuracy =', parse_right_num/test_size)
     print('candidates_accuracy =', candidates_right_num/test_size)

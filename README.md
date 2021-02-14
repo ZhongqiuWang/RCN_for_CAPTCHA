@@ -1,2 +1,15 @@
 # RCN_for_CAPTCHA
-RCN_for_CAPTCHA_by_WangZhongqiu
+
+本项目来自于本人本科毕业设计工作的部分章节内容，可以作为一个独立的整体，因此整理后开源出来，以用于交流学习。
+
+本项目基于论文*A generative vision model that trains with high data efficiency and breaks text-based CAPTCHAs*及其开源代码展开研究，基本实现了原论文中提出的使用递归皮层网络（Recursive Cortical Network，RCN）模型进行文字验证码图片识别的过程。
+
+代码以实现功能为主要目的，未考虑任何优化，因此性能欠佳。
+
+模型的详细原理请参考原论文。
+
+本项目代码使用Python 3.6，程序入口为src/run_for_MultiObjects.py
+
+参考资料：
+- 参考文献地址：[A generative vision model that trains with high data efficiency and breaks text-based CAPTCHAs](https://science.sciencemag.org/content/358/6368/eaag2612.long)
+- 参考文献开源代码地址：[science_rcn](https://github.com/vicariousinc/science_rcn)
