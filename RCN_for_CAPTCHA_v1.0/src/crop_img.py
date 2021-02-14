@@ -47,7 +47,6 @@ def sliding_windows_cropping(img, is_show_tmp):
             # 剪裁结果添加到list中
             if is_show_tmp:
                 save_cropped_img(res, i, j)
-
             cropped_imgs.append((res, i, j))
 
     return cropped_imgs
