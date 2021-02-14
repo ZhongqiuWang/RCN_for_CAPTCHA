@@ -1,23 +1,23 @@
 import os
 import time
 
-from src.main_process import run_train_experiment, run_parse
+from main_process import run_train_experiment, run_parse
 
 """
 默认参数default_parameter
 """
 default_parameter = {
-    'run_params': 0,  # 运行参数  1：仅训练；2：仅测试；3：训练&测试
-    'train_data_dir': 'Dataset/botdetect',
-    'test_data_dir': 'Dataset/botdetect/test_set/ancient_mosaic',
+    'run_params': 3,  # 运行参数  1：仅训练；2：仅测试；3：训练&测试
+    'train_data_dir': '../Dataset/botdetect',
+    'test_data_dir': '../Dataset/botdetect/test_set/ancient_mosaic',
     'train_size': 672,  # 28x24
     'test_size': 1,
     'pool_shape': (21, 21),
     'perturb_factor': 3,
     'parallel': True,
     'seed': 1,  # 随机种子 np.random.randint(0, 100)
-    'target_data_dir': 'tmp/target_data',  # 将训练图片与测试图片取出放至target_data，使用数据可视
-    'model_dir': 'Model/rcn_model_for_MultiObjects',
+    'target_data_dir': '../tmp/target_data',  # 将训练图片与测试图片取出放至target_data，使用数据可视
+    'model_dir': '../Model/rcn_model_for_MultiObjects_0214test',
     'is_show_tmp': False
 }
 
@@ -39,7 +39,7 @@ def clear_tmp(tmp_path):
 
 
 if __name__ == '__main__':
-    clear_tmp('tmp')
+    clear_tmp('../tmp')
     print('主程序开始')
     start = time.perf_counter()
 

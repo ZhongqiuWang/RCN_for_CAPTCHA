@@ -1,10 +1,11 @@
 import numpy as np
+import cv2 as cv
 import networkx as nx
+import matplotlib.pyplot as plt
 from scipy.spatial import distance, cKDTree
 from collections import namedtuple
-from src.preprocess import Preproc
-import matplotlib.pyplot as plt
-import cv2 as cv
+
+from preprocess import Preproc
 
 
 ModelFactors = namedtuple('ModelFactors', ['frcs', 'edge_factors', 'graph'])
@@ -111,7 +112,7 @@ def show_bu_msg(bu_msg):
         for c, buc in enumerate(bur):
             if buc > 0:
                 final[r, c] = 255
-    dir1 = 'tmp/learning/learning_bu_msg.bmp'
+    dir1 = '../tmp/learning/learning_bu_msg.bmp'
     cv.imwrite(dir1, final)
 
 
@@ -122,9 +123,9 @@ def show_frcs(frcs):
         img[frc[0], frc[1], frc[2]] = 255
         fin[frc[1], frc[2]] = 255
     for i in range(16):
-        dir1 = 'tmp/learning/'+str(i)+'.bmp'
+        dir1 = '../tmp/learning/'+str(i)+'.bmp'
         cv.imwrite(dir1, img[i])
-    dir1 = 'tmp/learning/all_frcs.bmp'
+    dir1 = '../tmp/learning/all_frcs.bmp'
     cv.imwrite(dir1, fin)
 
 

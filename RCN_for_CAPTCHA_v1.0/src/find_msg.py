@@ -1,7 +1,7 @@
 import numpy as np
 import cv2 as cv
-from src.preprocess import Preproc
-from src.crop_img import inverse_pad_resize_process
+from preprocess import Preproc
+from crop_img import inverse_pad_resize_process
 
 
 def find_whole_bu_msg(parsing_img):
@@ -23,13 +23,14 @@ def find_whole_bu_msg(parsing_img):
     return whole_bu_msg
 
 
-def find_whole_td_msg(candidates):
+def find_whole_td_msg(candidates, is_show_tmp=False):
     """
     找到对于每个候选目标自顶向下过程中的回溯结果
     :param candidates: 20x6的np.ndarray, 表示20个候选目标
                        每个候选目标是一个6元数组
                        第0-3个元素分别表示 idx, score, backtrace_positions, pools_num
                        第4-5个元素表示该窗口对应原图的第几行、第几列
+    :param is_show_tmp:
     :return: whole_td_msg  20x16x200x1000的np.ndarray, dtype=np.uint8
                            每个候选目标的回溯结果是16x200x1000的np.ndarray, 总共有20个
     """
@@ -52,7 +53,8 @@ def find_whole_td_msg(candidates):
     whole_td_msg = whole_td_msg[:, :, 50:250, 50:1050]    # 去掉padding的部分
 
     # 可视化td_msg
-    show_whole_td_msg(whole_td_msg)
+    if is_show_tmp:
+        show_whole_td_msg(whole_td_msg)
 
     return whole_td_msg
 
@@ -72,7 +74,7 @@ def show_whole_td_msg(whole_td_msg):
     :param whole_td_msg: np.ndarray, shape=(20, 16, 200, 1000)
     :return:
     """
-    img_path = 'tmp/td_msg'
+    img_path = '../tmp/td_msg'
     for tag in range(20):
         final = np.zeros((200, 1000), dtype=np.uint8)
         for i in range(16):

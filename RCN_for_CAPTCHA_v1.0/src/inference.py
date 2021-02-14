@@ -11,7 +11,7 @@ import networkx as nx
 from numpy.random import rand, randint
 from scipy.ndimage.morphology import grey_dilation
 # from science_rcn.dilation.dilation import dilate_2d
-from src.preprocess import Preproc
+from preprocess import Preproc
 
 
 # import cv2 as cv

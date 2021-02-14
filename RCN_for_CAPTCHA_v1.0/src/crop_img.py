@@ -2,10 +2,11 @@ import cv2 as cv
 import numpy as np
 
 
-def sliding_windows_cropping(img):
+def sliding_windows_cropping(img, is_show_tmp):
     """
     滑动窗口剪裁图片
     :param img: 被剪裁的图片, BotDetect中图片原始尺寸250x50, 即shape=(50, 250)
+    :param is_show_tmp:
     :return: cropped_imgs
              剪裁结果, 一个list, 其中每个元素为一个三元tuple
              tuple中第0个元素为剪裁出来的图片, 二维np.ndarray
@@ -44,7 +45,9 @@ def sliding_windows_cropping(img):
             res = pad_resize_process(tmp)
 
             # 剪裁结果添加到list中
-            save_cropped_img(res, i, j)
+            if is_show_tmp:
+                save_cropped_img(res, i, j)
+
             cropped_imgs.append((res, i, j))
 
     return cropped_imgs
@@ -92,7 +95,7 @@ def inverse_pad_resize_process(r, c):
 
 
 def save_cropped_img(cropped_img, i, j):
-    img_dir = 'tmp/sliding_windows'
+    img_dir = '../tmp/sliding_windows'
     new_name = img_dir+'/'+str(i)+'_'+str(j)+'.bmp'
     cv.imwrite(new_name, cropped_img)
 
