@@ -17,7 +17,7 @@ default_parameter = {
     'parallel': True,
     'seed': 1,  # 随机种子 np.random.randint(0, 100)
     'target_data_dir': '../tmp/target_data',  # 将训练图片与测试图片取出放至target_data，使用数据可视
-    'model_dir': '../Model/rcn_model_for_MultiObjects_0214test',
+    'model_dir': '../Model/rcn_model_for_MultiObjects_test',
     'is_show_tmp': False
 }
 
