@@ -1,10 +1,8 @@
 # RCN_for_CAPTCHA
 
-本项目来自于本人本科毕业设计工作的部分章节内容，可以作为一个独立的整体，因此整理后开源出来，以用于交流学习。
+本项目来自于本人本科毕业设计工作的部分章节内容，可以作为一个独立的整体，因此整理后开源出来。
 
 本项目基于论文*A generative vision model that trains with high data efficiency and breaks text-based CAPTCHAs*及其开源代码展开研究，基本实现了原论文中提出的使用递归皮层网络（Recursive Cortical Network，RCN）模型进行文字验证码图片识别的过程。
-
-代码以实现功能为主要目的，未考虑任何优化，因此性能欠佳。
 
 模型的详细原理请参考原论文。
 
